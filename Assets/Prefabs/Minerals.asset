@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa97f45bbeb4d214eaa9ef2328237141, type: 3}
+  m_Name: Minerals
+  m_EditorClassIdentifier: 
+  _objectPrefab: {fileID: 8866803562146761224, guid: 0e6757fb4cb880f4898ee55909d6d42d, type: 3}
+  _objectData:
+  - _basePrice: 1
+    _sprite: {fileID: 21300000, guid: 7e58df89d74fe4747a69aba9167871fb, type: 3}
+  - _basePrice: 2
+    _sprite: {fileID: 21300000, guid: 74c28eb1eaaee4c479c19a7c6cc7c77e, type: 3}
+  - _basePrice: 3
+    _sprite: {fileID: 21300000, guid: d82c86fbf61f8bd47819dd10808ddfb1, type: 3}
