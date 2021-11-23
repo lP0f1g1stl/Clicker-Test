@@ -4,30 +4,17 @@ using UnityEngine;
 
 public class BackgroundScrolling : MonoBehaviour
 {
-    private Renderer _bgRend;
+    [SerializeField] private Renderer bgRend;
 
-    [SerializeField] private Vector2 _speed;
+    private float speed = 0;
 
-    private void Awake()
+    void FixedUpdate()
     {
-        _bgRend = GetComponent<MeshRenderer>();
+        bgRend.material.mainTextureOffset += new Vector2(0f, speed * Time.deltaTime);    
     }
-    private void Start()
-    {
-        _speed /= 50;
-        StartCoroutine(bg());
-    }
-    /*void FixedUpdate()
-    {
-        _bgRend.material.mainTextureOffset += _speed * Time.deltaTime;    
-    }*/
 
-    private IEnumerator bg() 
+    public void SetBackgroundSpeed(float bgSpeed) 
     {
-        while (true)
-        {
-            _bgRend.material.mainTextureOffset += _speed;
-            yield return new WaitForSeconds(0.02f);
-        }
+        speed = bgSpeed;
     }
 }
