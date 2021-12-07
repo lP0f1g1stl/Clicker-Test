@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class GameButtons : MonoBehaviour
 {
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject mineralSpawner;
-    [SerializeField] private GameObject upgradesList;
-    [SerializeField] private GameObject acceptExit;
-
-    private float speed = 0.1f;
-
-    public void StartOnClick()
-    {
-        background.GetComponent<BackgroundScrolling>().SetBackgroundSpeed(speed);
-        mineralSpawner.GetComponent<MineralSpawner>().StartStop(speed);
-    }
+    [SerializeField] private GameObject _upgradesList;
+    [SerializeField] private GameObject _acceptExit;
 
     public void ShowUpgrades() 
     {
-        upgradesList.SetActive(!upgradesList.activeSelf);
+        _upgradesList.SetActive(!_upgradesList.activeSelf);
     }
 
     public void Exit(int commId) 
     {
-        if (commId == 0)
+        switch(commId)
         {
-            acceptExit.SetActive(!acceptExit.activeSelf);
-        }
-        if (commId == 1)
-        {
-            Application.Quit();
+            case 0:
+                _acceptExit.SetActive(!_acceptExit.activeSelf);
+                break;
+            case 1:
+                Application.Quit();
+                break;
         }
     }
 }
