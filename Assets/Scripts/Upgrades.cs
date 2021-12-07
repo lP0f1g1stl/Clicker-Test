@@ -1,63 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Upgrades : MonoBehaviour
 {
-    [SerializeField] private int[,] valuesOfUpgrades = new int[3, 3];
+    [SerializeField] UpgradePrefab _upgradePrefab;
+    [SerializeField] GameObject _upgradesList;
+    [SerializeField] UpgradesData _upgradesData;
 
-    [SerializeField] private Text[] descOfLevels = new Text[3];
-    [SerializeField] private Text[] descOfPrices = new Text[3];
+    private List<UpgradePrefab> _objects = new List<UpgradePrefab>();
 
-    private int money;
+    public delegate bool OnUpgradeButtonClick(int id);
+    public event OnUpgradeButtonClick IsClicked;
 
-    void Start() 
+    public delegate void OnUpgrade();
+    public event OnUpgrade IsUpgraded;
+
+    private void Start()
     {
-        valuesOfUpgrades[0, 0] = 1;
-        valuesOfUpgrades[1, 0] = 1;
-        valuesOfUpgrades[2, 0] = 1;
-
-        valuesOfUpgrades[0, 1] = 1;
-        valuesOfUpgrades[1, 1] = 1;
-        valuesOfUpgrades[2, 1] = 1;
-
-        valuesOfUpgrades[0, 2] = 10;
-        valuesOfUpgrades[1, 2] = 10;
-        valuesOfUpgrades[2, 2] = 3;
+        CreateUpgradesList();
     }
-
-    public void SetUpgradeLevel(int upgradeId) 
+    public void Upgrade(int id)
     {
-        if (money >= valuesOfUpgrades[upgradeId, 1] && valuesOfUpgrades[upgradeId, 0] < valuesOfUpgrades[upgradeId, 2]) 
+        if (_upgradesData.UpgradeData[id].Level < _upgradesData.UpgradeData[id].MaxLevel)
         {
-            GetComponent<Score>().ChangeAmountOfMoney(-valuesOfUpgrades[upgradeId, 1]);
-            valuesOfUpgrades[upgradeId, 0] += 1;
-            valuesOfUpgrades[upgradeId, 1] *= 2;
-            descOfLevels[upgradeId].text = valuesOfUpgrades[upgradeId, 0].ToString();
-            descOfPrices[upgradeId].text = valuesOfUpgrades[upgradeId, 1].ToString();
-            GetUpgradeValue(upgradeId);
+            var check = IsClicked?.Invoke(id);
+            if (check == true)
+            {
+                _upgradesData.UpgradeData[id].Level += 1;
+                IsUpgraded?.Invoke();
+                ChangeUpgradeUI(id);
+            }
         }
     }
-
-    public void CheckScore(int cMoney) 
-    {
-        money = cMoney;
+    private void CreateUpgradesList() 
+    { 
+        for (int i = 0; i < _upgradesData.UpgradeData.Length; i++) 
+        {
+            CreateUpgradeUI(i);
+        }
     }
-
-    private void GetUpgradeValue( int upgradeId) 
+    private void CreateUpgradeUI(int id) 
     {
-        if (upgradeId == 0) 
-        {
-            GetComponent<MineralSpawner>().SetSpawnSpeed();
-        }
-        if (upgradeId == 1) 
-        {
-            GetComponent<MineralSpawner>().SetPriceOfUpgrade(valuesOfUpgrades[upgradeId, 0]);
-        }
-        if (upgradeId == 2) 
-        {
-            GetComponent<MineralSpawner>().SetMineralSpawnTier(valuesOfUpgrades[upgradeId, 0]);
-        }
+        UpgradePrefab upgradeUI = Instantiate(_upgradePrefab, _upgradesList.transform);
+        _objects.Add(upgradeUI);
+        SetUpgradeData(id);
+        SetUpgradeUIPosition(id);
+    }
+    private void SetUpgradeData(int id) 
+    {
+        _objects[id].ID = id;
+        _objects[id].SetUpgradesObject(this);
+        ChangeUpgradeUI(id);
+    }
+    private void ChangeUpgradeUI(int id) 
+    {
+        _objects[id].Description = _upgradesData.UpgradeData[id].Description;
+        _objects[id].Level = _upgradesData.UpgradeData[id].Level.ToString();
+        _objects[id].Price = _upgradesData.UpgradeData[id].Price.ToString();
+    }
+    private void SetUpgradeUIPosition(int id) 
+    {
+        _objects[id].gameObject.transform.localPosition = new Vector3(0, -100 - 200 * id, 0);
     }
 }

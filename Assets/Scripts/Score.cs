@@ -5,28 +5,40 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private Text money;
-    [SerializeField] private Text score;
-    [SerializeField] private GameObject mineralSpawner;
+    [SerializeField] private Text _score;
 
-    private int curMoney = 0;
-    private int curScore = 0;
+    [SerializeField] private Player _player;
+    [SerializeField] private ObjectsData _objectlData;
+    [SerializeField] private PlayerData _playerData;
 
-    public void ChangeAmountOfMoney(int price) 
+    private int _curScore;
+
+    private void Start()
     {
-        curMoney += price;
+       _player.OnClick += ChangeScore;
+        LoadScore();
         ChangeText();
-        GetComponent<Upgrades>().CheckScore(curMoney);
     }
-
-    public void ChangeScore(int basePrice) 
+    public void ChangeScore(int id) 
     {
-        curScore += basePrice;
+        _curScore += _objectlData.ObjectData[id].BasePrice;
+        SaveScore();
         ChangeText();
+    }
+    private void SaveScore() 
+    {
+        _playerData.Score = _curScore;
+    }
+    private void LoadScore() 
+    {
+        _curScore = _playerData.Score;
     }
     private void ChangeText() 
     {
-        money.text = "Money: " + curMoney.ToString();
-        score.text = "Score: " + curScore.ToString();
+        _score.text = "Score: " + _curScore.ToString();
+    }
+    private void OnDestroy()
+    {
+        _player.OnClick -= ChangeScore;
     }
 }
