@@ -529,19 +529,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 497102646}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1284795379}
-        m_TargetAssemblyTypeName: GameButtons, Assembly-CSharp
-        m_MethodName: Exit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &497102646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,19 +649,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 497166204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1284795379}
-        m_TargetAssemblyTypeName: GameButtons, Assembly-CSharp
-        m_MethodName: ShowUpgrades
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &497166204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,19 +1236,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 949122463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1284795379}
-        m_TargetAssemblyTypeName: GameButtons, Assembly-CSharp
-        m_MethodName: Exit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &949122463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,19 +1558,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1264624317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1284795379}
-        m_TargetAssemblyTypeName: GameButtons, Assembly-CSharp
-        m_MethodName: Exit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1264624317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,6 +1631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradesList: {fileID: 1082370050}
   _acceptExit: {fileID: 1810733861}
+  _upgradeButton: {fileID: 497166203}
+  _exitButton: {fileID: 497102645}
 --- !u!4 &1284795380
 Transform:
   m_ObjectHideFlags: 0
@@ -2017,6 +1971,7 @@ GameObject:
   - component: {fileID: 1810733862}
   - component: {fileID: 1810733864}
   - component: {fileID: 1810733863}
+  - component: {fileID: 1810733865}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -2084,6 +2039,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810733861}
   m_CullTransparentMesh: 0
+--- !u!114 &1810733865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810733861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee7f23a359efff45b94007e70cc6ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _accept: {fileID: 949122462}
+  _close: {fileID: 1264624316}
 --- !u!1 &1952031594
 GameObject:
   m_ObjectHideFlags: 0

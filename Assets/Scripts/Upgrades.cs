@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Upgrades : MonoBehaviour
 {
@@ -13,8 +14,7 @@ public class Upgrades : MonoBehaviour
     public delegate bool OnUpgradeButtonClick(int id);
     public event OnUpgradeButtonClick IsClicked;
 
-    public delegate void OnUpgrade();
-    public event OnUpgrade IsUpgraded;
+    public Action IsUpgraded;
 
     private void Start()
     {
